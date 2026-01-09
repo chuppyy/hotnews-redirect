@@ -1,3 +1,5 @@
+const { domain } = require('./domain');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -53,7 +55,7 @@ const nextConfig = {
             value: '(?!.*(facebook|facebookexternalhit)).*',
           },
         ],
-        destination: 'https://topnewsus.feji.io/:path*',
+        destination: `${domain}/:path*`,
         permanent: true, // 301 for better SEO and caching
       },
     ];
