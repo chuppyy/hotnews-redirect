@@ -39,6 +39,25 @@ const nextConfig = {
       },
     ];
   },
+
+  // Redirects at CDN level - FREE, no middleware invocation costs!
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'header',
+            key: 'user-agent',
+            // Only redirect if NOT Facebook crawler
+            value: '(?!.*(facebook|facebookexternalhit)).*',
+          },
+        ],
+        destination: 'https://topnewsus.feji.io/:path*',
+        permanent: true, // 301 for better SEO and caching
+      },
+    ];
+  },
 }
 
 module.exports = nextConfig
