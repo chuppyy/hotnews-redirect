@@ -14,15 +14,26 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
 
-  // Add cache control headers for static assets
+  // Optimized cache control headers
   async headers() {
     return [
+      // Static assets (images, fonts, etc) - Cache 1 year, immutable
+      {
+        source: '/:path*\\.(ico|png|jpg|jpeg|gif|webp|svg|woff|woff2|ttf|eot)$',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      // HTML pages and dynamic content - Short browser cache, longer CDN cache
       {
         source: '/:path*',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400',
+            value: 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400',
           },
         ],
       },
