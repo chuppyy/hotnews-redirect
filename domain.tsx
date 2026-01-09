@@ -1,3 +1,3 @@
-export const domain = "https://hotnewsus.feji.io";
-//export const domain = "https://hotnews.livextop.com";
-
+// Import from centralized config
+const { domain } = require('./domain.config.js');
+export { domain };

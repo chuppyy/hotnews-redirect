@@ -1,4 +1,4 @@
-const { domain } = require('./domain');
+const { domain } = require('./domain.config.js');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
